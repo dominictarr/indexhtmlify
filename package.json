@@ -1,0 +1,13 @@
+{
+  "name": "indexhtmlify",
+  "description": "wrap a js file in the minimum html to be browser-runnable",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dominictarr/indexhtmlify",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/indexhtmlify.git"
+  },
+  "bin": "./index.js",
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "license": "MIT"  
+}
