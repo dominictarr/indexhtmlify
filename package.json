@@ -9,5 +9,8 @@
   },
   "bin": "./index.js",
   "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
-  "license": "MIT"  
+  "license": "MIT",
+  "dependencies": {
+    "optimist": "~0.6.0"
+  }
 }
