@@ -16,7 +16,7 @@ log('<meta charset=utf-8></head>')
 
 if(opts.style) {
   log('<style>')
-  log(require('fs').readFileSync(opts.style, 'utf8')))
+  log(require('fs').readFileSync(opts.style, 'utf8'))
   log('</style>')
 }
 
