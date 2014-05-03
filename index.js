@@ -7,9 +7,10 @@ function indexhtmlify(opts) {
     var s = through(function onwrite(chunk, enc, cb) {
         s.push(chunk)
         cb()
-    }, function onend() {
+    }, function onend(cb) {
         s.push('</script>\n')
         s.push('</html>\n')
+        cb()
     })
 
     s.push('<!DOCTYPE html>\n')
