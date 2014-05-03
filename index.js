@@ -1,31 +1,46 @@
 #! /usr/bin/env node
 
 var opts = require('optimist').argv
+var through = require('through2');
 
-if(process.stdin.isTTY) {
-  console.error('USAGE: browserify client.js | indexhtmlify ' +
-    '--style style.css > index.html')
-  process.exit(1)
+function indexhtmlify(opts) {
+    var s = through(function onwrite(chunk, enc, cb) {
+        s.push(chunk)
+        cb()
+    }, function onend() {
+        s.push('</script>\n')
+        s.push('</html>\n')
+    })
+
+    s.push('<!DOCTYPE html>\n')
+    s.push('<html>\n')
+    s.push('<head>\n')
+    s.push('<meta content="width=device-width, initial-scale=1.0, ' +
+        'maximum-scale=1.0, user-scalable=0" name="viewport" />\n')
+    s.push('<meta charset=utf-8></head>\n')
+
+    if (opts.style) {
+        s.push('<style>\n')
+        s.push(require('fs').readFileSync(opts.style, 'utf8'))
+        s.push('</style>\n')
+    }
+
+    s.push('<body></body>\n')
+    s.push('<script language=javascript>\n')
+
+    return s
 }
 
-var log = console.log
-log('<!DOCTYPE html>')
-log('<html>')
-log('<head>')
-log('<meta content="width=device-width, initial-scale=1.0, ' +
-    'maximum-scale=1.0, user-scalable=0" name="viewport" />')
-log('<meta charset=utf-8></head>')
+module.exports = indexhtmlify
 
-if(opts.style) {
-  log('<style>')
-  log(require('fs').readFileSync(opts.style, 'utf8'))
-  log('</style>')
+if (require.main === module) {
+    if(process.stdin.isTTY) {
+        console.error('USAGE: browserify client.js | indexhtmlify ' +
+            '--style style.css > index.html')
+        process.exit(1)
+    }
+
+    process.stdin
+        .pipe(indexhtmlify(opts))
+        .pipe(process.stdout)
 }
-
-log('<body></body>')
-log('<script language=javascript>')
-process.stdin.pipe(process.stdout)
-process.on('exit', function () {
-  log('</script>')
-  log('</html>')
-})
