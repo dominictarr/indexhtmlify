@@ -4,6 +4,8 @@ var opts = require('optimist').argv
 var through = require('through2');
 
 function indexhtmlify(opts) {
+    opts = opts || {}
+
     var s = through(function onwrite(chunk, enc, cb) {
         s.push(chunk)
         cb()
@@ -16,7 +18,7 @@ function indexhtmlify(opts) {
     s.push('<!DOCTYPE html>\n')
     s.push('<html>\n')
     s.push('<head>\n')
-    s.push('<title>---</title>\n')
+    s.push('<title>' + (opts.title || '---') + '</title>\n')
     s.push('<meta content="width=device-width, initial-scale=1.0, ' +
         'maximum-scale=1.0, user-scalable=0" name="viewport" />\n')
     s.push('<meta charset=utf-8></head>\n')
