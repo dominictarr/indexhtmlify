@@ -30,7 +30,7 @@ function indexhtmlify(opts) {
     }
 
     s.push('<body></body>\n')
-    s.push('<script language=javascript>\n')
+    s.push('<script>\n')
 
     return s
 }
@@ -40,7 +40,7 @@ module.exports = indexhtmlify
 if (require.main === module) {
     if(process.stdin.isTTY) {
         console.error('USAGE: browserify client.js | indexhtmlify ' +
-            '--style style.css > index.html')
+            '--style style.css --title title > index.html')
         process.exit(1)
     }
 
