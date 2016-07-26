@@ -16,7 +16,12 @@ function indexhtmlify(opts) {
     })
 
     s.push('<!DOCTYPE html>\n')
-    s.push('<html>\n')
+    if(opts.appcache) {
+      var appcache = opts.appcache === true ? './manifest.appcache' : opts.appcache
+      s.push('<html manifest=' + JSON.stringify(appcache) + '>')
+    }
+    else
+      s.push('<html>\n')
     s.push('<head>\n')
     s.push('<title>' + (opts.title || '---') + '</title>\n')
     s.push('<meta content="width=device-width, initial-scale=1.0, ' +
@@ -48,3 +53,4 @@ if (require.main === module) {
         .pipe(indexhtmlify(opts))
         .pipe(process.stdout)
 }
+
