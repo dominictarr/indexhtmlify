@@ -4,7 +4,7 @@ Wrap a js bundle in the minimum html to be browser runnable
 
 ```
 # bundle and wrap
-browserify client.js | indexhmtmlify > index.html
+browserify client.js | indexhtmlify > index.html
 
 # open in browser
 open index.html
@@ -15,7 +15,7 @@ open index.html
 use [metadataify](https://github.com/rreusser/metadataify)
 
 ``` js
-browserify client.js | indexhmtmlify | metadataify --title "title foo bar"
+browserify client.js | indexhtmlify | metadataify --title "title foo bar"
 ```
 
 ## License
