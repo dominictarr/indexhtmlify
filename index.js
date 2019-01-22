@@ -29,13 +29,13 @@ function indexhtmlify(opts) {
     s.push('<meta charset=utf-8></head>\n')
 
     if (opts.style) {
-        s.push('<style>\n')
+        s.push('<style>')
         s.push(require('fs').readFileSync(opts.style, 'utf8'))
         s.push('</style>\n')
     }
 
     s.push('<body></body>\n')
-    s.push('<script>\n')
+    s.push('<script>')
 
     return s
 }
