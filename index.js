@@ -26,7 +26,7 @@ function indexhtmlify(opts) {
     s.push('<title>' + (opts.title || '---') + '</title>\n')
     s.push('<meta content="width=device-width, initial-scale=1.0, ' +
         'maximum-scale=1.0, user-scalable=0" name="viewport" />\n')
-    s.push('<meta charset=utf-8></head>\n')
+    s.push('<meta charset="utf-8"></head>\n')
 
     if (opts.style) {
         s.push('<style>')
